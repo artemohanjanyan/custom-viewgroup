@@ -64,16 +64,11 @@ public class MyLayout extends ViewGroup {
             }
         }
 
-        if (maxAllowedWidth != -1 && sumChildWidth > maxAllowedWidth) {
-            if (childWithMatchParent != null) {
+        if (childWithMatchParent != null) {
+            if (maxAllowedWidth != -1 && sumChildWidth > maxAllowedWidth) {
                 childWithMatchParent
                         .measure(makeMeasureSpec(0, EXACTLY), makeMeasureSpec(0, EXACTLY));
-            }
-            setMeasuredDimension(
-                    resolveSize(sumChildWidth, widthMeasureSpec),
-                    resolveSize(maxChildHeight, heightMeasureSpec));
-        } else {
-            if (childWithMatchParent != null) {
+            } else {
                 childWithMatchParent.measure(
                         makeMeasureSpec(maxAllowedWidth - sumChildWidth, EXACTLY),
                         getChildMeasureSpec(heightMeasureSpec, 0,
@@ -82,11 +77,11 @@ public class MyLayout extends ViewGroup {
                 maxChildHeight = Math.max(maxChildHeight, childWithMatchParent.getMeasuredHeight());
                 sumChildWidth += childWithMatchParent.getMeasuredWidth();
             }
-
-            setMeasuredDimension(
-                    resolveSize(sumChildWidth, widthMeasureSpec),
-                    resolveSize(maxChildHeight, heightMeasureSpec));
         }
+
+        setMeasuredDimension(
+                resolveSize(sumChildWidth, widthMeasureSpec),
+                resolveSize(maxChildHeight, heightMeasureSpec));
     }
 
     @Override
