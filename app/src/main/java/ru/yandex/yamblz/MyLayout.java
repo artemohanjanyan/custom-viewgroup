@@ -47,11 +47,9 @@ public class MyLayout extends ViewGroup {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
                 final LayoutParams childParams = child.getLayoutParams();
-                if (childParams.width == MATCH_PARENT) {
-                    if (widthSpecMode == UNSPECIFIED) {
-                        childParams.width = WRAP_CONTENT;
-                        child.setLayoutParams(childParams);
-                    }
+                if (childParams.width == MATCH_PARENT && widthSpecMode == UNSPECIFIED) {
+                    childParams.width = WRAP_CONTENT;
+                    child.setLayoutParams(childParams);
                 }
 
                 if (childParams.width == MATCH_PARENT) {
@@ -86,16 +84,15 @@ public class MyLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        final int height = bottom - top;
         int childCount = getChildCount();
-
+        int childLeft = 0;
         for (int i = 0; i < childCount; ++i) {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                int nextLeft = left + child.getMeasuredWidth();
-
-                child.layout(left, top, nextLeft,
-                        Math.min(bottom, top + child.getMeasuredHeight()));
-                left = nextLeft;
+                int nextLeft = childLeft + child.getMeasuredWidth();
+                child.layout(childLeft, 0, nextLeft, Math.min(height, child.getMeasuredHeight()));
+                childLeft = nextLeft;
             }
         }
     }

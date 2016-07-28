@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ru.yandex.yamblz.MyLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/content"
-        android:textSize="32sp"
-        android:gravity="center"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/content"
-        android:textSize="32sp"
-        android:gravity="center"
-        />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/content"
-        android:textSize="32sp"
-        android:gravity="center"
-        />
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <TextView
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/content"
-        android:textSize="32sp"
-        android:gravity="center"
-        />
-</ru.yandex.yamblz.MyLayout>
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+        <include layout="@layout/mylayout_item" />
+
+    </LinearLayout>
+
+</ScrollView>
